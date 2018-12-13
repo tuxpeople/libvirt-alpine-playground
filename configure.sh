@@ -25,6 +25,10 @@ rc-update add net.lo boot
 rc-update add termencoding boot
 rc-update add haveged boot
 
+cat <<EOF > /etc/motd
+Welcome to Alpine!
+EOF
+
 mkdir -m 700 -p /root/.ssh
 curl https://github.com/nrocco.keys | tee /root/.ssh/authorized_keys
 chmod 600 /root/.ssh/authorized_keys

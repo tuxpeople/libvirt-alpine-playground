@@ -23,6 +23,7 @@ nmap-scripts
 openssh
 pciutils
 procps
+shadow
 ssmtp
 sudo
 tcpdump
