@@ -3,6 +3,8 @@ First download alpine-make-vm-image from https://github.com/alpinelinux/alpine-m
     wget https://raw.githubusercontent.com/alpinelinux/alpine-make-vm-image/v0.4.0/alpine-make-vm-image \
         && echo '5fb3270e0d665e51b908e1755b40e9c9156917c0  alpine-make-vm-image' | sha1sum -c \
         || exit 1
+    mv alpine-make-vm-image /usr/local/bin/
+    chmod +x /usr/local/bin/alpine-make-vm-image
 
 
 Create a new alpine qcow2 image
