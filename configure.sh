@@ -28,3 +28,10 @@ rc-update add haveged boot
 mkdir -m 700 -p /root/.ssh
 curl https://github.com/nrocco.keys | tee /root/.ssh/authorized_keys
 chmod 600 /root/.ssh/authorized_keys
+
+chsh --shell /bin/bash root
+
+cat <<'EOF' > /root/.bash_profile
+PS1="[\u@\h:\w${_p}] "
+export EDITOR=/usr/bin/vim
+EOF
