@@ -25,6 +25,8 @@ Import that image into libvirt (https://askubuntu.com/questions/299570/how-do-i-
 
     virsh vol-create-as default alpine-base 5368709120 --format qcow2
     virsh vol-upload --pool default --vol alpine-base ./alpine-base.qcow2
+    
+    rm alpine-base.qcow2
 
 
 Create a new domain based on the above base image (https://jlk.fjfi.cvut.cz/arch/manpages/man/virt-install.1)
@@ -32,7 +34,7 @@ Create a new domain based on the above base image (https://jlk.fjfi.cvut.cz/arch
     virt-install --name alpine \
         --os-variant alpinelinux3.7 \
         --memory 512 \
-        --disk pool=default,size=5,backing_store=/mnt/pool-default/alpine-base,backing_format=qcow2,format=qcow2 \
+        --disk pool=default,size=5,backing_store=$(virsh vol-path --pool default --vol alpine-base),backing_format=qcow2,format=qcow2 \
         --import \
         --graphics vnc \
         --network default,model=virtio \
