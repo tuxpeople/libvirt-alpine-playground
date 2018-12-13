@@ -9,7 +9,10 @@ First download alpine-make-vm-image from https://github.com/alpinelinux/alpine-m
 
 Create a new alpine qcow2 image
 
-    bash alpine-make-vm-image --image-format qcow2 --image-size 5G --repositories-file repositories --packages "$(cat packages)" --script-chroot alpine-base.qcow2 -- configure.sh
+    alpine-make-vm-image --image-format qcow2 --image-size 5G \
+        --repositories-file repositories \
+        --packages "$(cat packages)" \
+        --script-chroot alpine-base.qcow2 -- configure.sh
 
 
 Import that image into libvirt (https://askubuntu.com/questions/299570/how-do-i-import-a-disk-image-into-libvirt)
