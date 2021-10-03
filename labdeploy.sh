@@ -34,6 +34,6 @@ virt-install \
     --cpu=host \
     --disk=${VMNAME}.qcow2,bus=virtio \
     --network=bridge=bridge99,model=virtio \
-    --os-variant=alpinelinux3.7 \
+    --os-variant=auto \
     --noautoconsole \
     --graphics=spice,port=-1,listen=localhost
