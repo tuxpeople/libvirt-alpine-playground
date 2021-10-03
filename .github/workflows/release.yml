@@ -1,7 +1,10 @@
-name: CI
+name: "Build & Release"
+
 on:
-  - pull_request
-  - push
+  schedule:
+    - cron: '3 3 * * *'
+  pull_request: 
+  push:
 
 jobs:
   test:
