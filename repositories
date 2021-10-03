@@ -1,2 +1,3 @@
-https://nl.alpinelinux.org/alpine/v3.11/main
-https://nl.alpinelinux.org/alpine/v3.11/community
+http://pkg.adfinis.com/alpine/edge/main
+http://pkg.adfinis.com/alpine/edge/community
+@testing http://pkg.adfinis.com/alpine/edge/testing
