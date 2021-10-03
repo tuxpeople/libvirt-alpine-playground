@@ -16,4 +16,6 @@ Create a new alpine qcow2 image
         --packages "$(cat packages)" \
         --script-chroot alpine-base.qcow2 -- configure.sh
 
-How to deploy it in my lab: `curl -sfL https://github.com/tuxpeople/libvirt-alpine-playground/raw/master/labdeploy.sh | bash -`
+How to deploy it in my lab:
+
+`curl -sfL https://github.com/tuxpeople/libvirt-alpine-playground/raw/master/labdeploy.sh | bash -`
