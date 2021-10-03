@@ -32,8 +32,8 @@ virt-install \
     --memory=2048 \
     --vcpus=1 \
     --cpu=host \
-    --disk=${VMNAME}.qcow2,bus=virtio \
-    --network=bridge=bridge99,model=virtio \
+    --disk=${VMNAME}.qcow2 \
+    --network=bridge=bridge99 \
     --os-variant=auto \
     --noautoconsole \
     --graphics=spice,port=-1,listen=localhost
