@@ -41,3 +41,5 @@ Create a new domain based on the above base image (https://jlk.fjfi.cvut.cz/arch
         --graphics vnc \
         --network default,model=virtio \
         --noautoconsole
+
+How to deploy it in my lab: `curl -sfL https://github.com/tuxpeople/libvirt-alpine-playground/raw/master/labdeploy.sh | bash -`

@@ -1,13 +1,14 @@
 #!/bin/bash
 
+VMNAME="${1:-alpine-playground}"
+DISK_SIZE="${2:-20G}"
+VMDIR="${3:-/data/virt/vms}"
+
 yum -y install jq
 
 kvm-install-vm remove alpine-playground
 
-VMDIR="/data/virt/vms"
-VMNAME="alpine-playground"
 IMG="$(curl -Ls https://api.github.com/repos/tuxpeople/libvirt-alpine-playground/releases/latest | jq '.assets[].browser_download_url' -r)"
-DISK_SIZE="20G"
 # Create image directory if it doesn't already exist
 mkdir -p ${VMDIR}
 check_vmname_set
