@@ -30,21 +30,29 @@ jobs:
               --repositories-file repositories \
               --packages "$(cat packages)" \
               --script-chroot \
-              alpine-playground-$(date +%Y-%m-%d).qcow2 -- ./onfigure.sh
+              alpine-playground.qcow2 -- ./configure.sh
+
+      - name: Bump version and push tag if needed
+        id: tag_version
+        if: github.event_name == 'push'
+        uses: mathieudutour/github-tag-action@v5.6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: false
 
       - uses: dev-drprasad/delete-older-releases@v0.2.0
-        if: github.event_name != 'pull_request'
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           keep_latest: 3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: "marvinpinto/action-automatic-releases@latest"
-        if: github.event_name != 'pull_request'
+      - uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
+          token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
-          title: "Build $(date +%Y-%m-%d)"
+          name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
           files: |
-            alpine-playground-$(date +%Y-%m-%d).qcow2
+            alpine-playground.qcow2
