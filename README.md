@@ -43,9 +43,11 @@ Create a new domain based on the above base image (https://jlk.fjfi.cvut.cz/arch
         --noautoconsole
 
 
+        kvm-install-vm remove alpine-playground
 
         VMDIR="/data/virt/vms"
         VMNAME="alpine-playground"
+        IMG="$(curl -Ls https://api.github.com/repos/tuxpeople/libvirt-alpine-playground/releases/latest | jq '.assets[].browser_download_url' -r)"
         DISK_SIZE="20G"
         # Create image directory if it doesn't already exist
         mkdir -p ${VMDIR}
@@ -55,6 +57,7 @@ Create a new domain based on the above base image (https://jlk.fjfi.cvut.cz/arch
         mkdir -p ${VMDIR}/${VMNAME}
         pushd ${VMDIR}/${VMNAME}
         DISK=${VMNAME}.qcow2
+        wget ${IMG} -O /data/virt/images/alpine-playground.qcow2
         qemu-img create -q -f qcow2 -F qcow2 -b /data/virt/images/alpine-playground.qcow2 $DISK
         qemu-img resize $DISK $DISK_SIZE
         virsh \
