@@ -7,7 +7,7 @@ on:
   push:
 
 jobs:
-  test:
+  image:
     runs-on: ubuntu-latest
     steps:
       - name: Install qemu-utils
@@ -44,18 +44,19 @@ jobs:
           default_bump: false
 
       - uses: dev-drprasad/delete-older-releases@v0.2.0
-        if: startsWith(github.ref, 'refs/tags/')
+        if: ${{ steps.tag_version.outputs.new_tag }}
         with:
           keep_latest: 3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+        if: ${{ steps.tag_version.outputs.new_tag }}
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: ${{ steps.tag_version.outputs.changelog }}
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
           files: |
             alpine-playground.qcow2
