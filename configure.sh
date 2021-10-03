@@ -30,7 +30,7 @@ Welcome to Alpine!
 EOF
 
 mkdir -m 700 -p /root/.ssh
-curl https://github.com/nrocco.keys | tee /root/.ssh/authorized_keys
+curl https://github.com/tuxpeople.keys | tee /root/.ssh/authorized_keys
 chmod 600 /root/.ssh/authorized_keys
 
 chsh --shell /bin/bash root

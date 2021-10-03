@@ -1,7 +1,9 @@
+    Based on https://gist.github.com/nrocco/072ea98cca82e4721b2289cb75558da1
+
 First download alpine-make-vm-image from https://github.com/alpinelinux/alpine-make-vm-image
 
-    wget https://raw.githubusercontent.com/alpinelinux/alpine-make-vm-image/v0.4.0/alpine-make-vm-image \
-        && echo '5fb3270e0d665e51b908e1755b40e9c9156917c0  alpine-make-vm-image' | sha1sum -c \
+    wget https://raw.githubusercontent.com/alpinelinux/alpine-make-vm-image/v0.7.0/alpine-make-vm-image \
+        && echo '9803170e07b05b97eb6712e6a9097ad656954d0f  alpine-make-vm-image' | sha1sum -c \
         || exit 1
     mv alpine-make-vm-image /usr/local/bin/
     chmod +x /usr/local/bin/alpine-make-vm-image
