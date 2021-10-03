@@ -9,6 +9,13 @@ step() {
 step 'Set up timezone'
 setup-timezone -z Europe/Zurich
 
+step 'Set up hostname'
+cat > /etc/hosts <<-EOF
+127.0.0.1 ${HOSTNAME:-alpine} ${HOSTNAME:-alpine}.local localhost
+::1       ${HOSTNAME:-alpine} ${HOSTNAME:-alpine}.local localhost
+EOF
+echo "${HOSTNAME:-alpine}" > /etc/hostname
+
 step 'Set up networking'
 cat > /etc/network/interfaces <<-EOF
 	iface lo inet loopback
@@ -32,6 +39,7 @@ rc-update add crond default
 rc-update add net.eth0 default
 rc-update add net.lo boot
 rc-update add termencoding boot
+rc-update add sshd default
 
 cat <<EOF > /etc/motd
 Welcome to Alpine!
