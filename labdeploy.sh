@@ -18,26 +18,21 @@ mkdir -p ${VMDIR}/${VMNAME}
 pushd ${VMDIR}/${VMNAME}
 DISK=${VMNAME}.qcow2
 wget ${IMG} -O /data/virt/images/alpine-playground.qcow2
-
-SIZE=$(qemu-img info --output json /data/virt/images/alpine-playground.qcow2 | jq -r .[\"virtual-size\"])
-TYPE=$(qemu-img info --output json /data/virt/images/alpine-playground.qcow2 | jq -r .format)
-
-# qemu-img create -q -f qcow2 -F qcow2 -b /data/virt/images/alpine-playground.qcow2 $DISK
-# qemu-img resize $DISK $DISK_SIZE
+qemu-img create -q -f qcow2 -F qcow2 -b /data/virt/images/alpine-playground.qcow2 $DISK
+qemu-img resize $DISK $DISK_SIZE
 virsh \
     pool-create-as \
     --name=${VMNAME} \
     --type=dir \
-    --target=${VMDIR}/${VMNAME}
-virsh vol-create-as ${VMNAME} ${VMNAME} ${SIZE} --format ${TYPE}
-virsh vol-upload --pool ${VMNAME} --vol ${VMNAME} /data/virt/images/alpine-playground.qcow2
+    --target=${VMDIR}/${VMNAME} \
+
 virt-install \
     --import \
     --name=${VMNAME} \
     --memory=2048 \
     --vcpus=1 \
     --cpu=host \
-    --disk pool=${VMNAME},size=5,backing_store=$(virsh vol-path --pool ${VMNAME} --vol ${VMNAME}),backing_format=qcow2,format=qcow2 \
+    --disk=${VMNAME}.qcow2,bus=virtio \
     --network=bridge=bridge99,model=virtio \
     --os-variant=auto \
     --noautoconsole \
