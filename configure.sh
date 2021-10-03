@@ -47,3 +47,5 @@ cat <<'EOF' > /root/.bash_profile
 PS1="[\u@\h:\w${_p}] "
 export EDITOR=/usr/bin/vim
 EOF
+
+sleep 20
