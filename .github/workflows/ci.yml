@@ -30,4 +30,4 @@ jobs:
               --repositories-file repositories \
               --packages "$(cat packages)" \
               --script-chroot \
-              alpine-playground-$(date +%Y-%m-%d).qcow2 -- ./configure.sh
+              alpine-playground-$(date +%Y-%m-%d).qcow2 -- configure.sh
