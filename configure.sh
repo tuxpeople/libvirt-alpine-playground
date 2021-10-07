@@ -41,6 +41,9 @@ rc-update add net.lo boot
 rc-update add termencoding boot
 rc-update add sshd default
 
+step 'Setup Cloud-init'
+setup-cloud-init
+
 cat <<EOF > /etc/motd
 Welcome to Alpine!
 EOF
