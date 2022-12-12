@@ -40,7 +40,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
 
-      - uses: dev-drprasad/delete-older-releases@v0.2.0
+      - uses: dev-drprasad/delete-older-releases@v0.2.1
         if: ${{ steps.tag_version.outputs.new_tag }}
         with:
           keep_latest: 3
