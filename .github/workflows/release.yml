@@ -20,7 +20,7 @@ jobs:
           mv alpine-make-vm-image /usr/local/bin/
           chmod +x /usr/local/bin/alpine-make-vm-image
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Build image
         run: |
