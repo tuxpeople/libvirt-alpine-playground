@@ -47,7 +47,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: softprops/action-gh-release@v1
+      - uses: softprops/action-gh-release@v2
         if: ${{ steps.tag_version.outputs.new_tag }}
         with:
           token: "${{ secrets.GITHUB_TOKEN }}"
